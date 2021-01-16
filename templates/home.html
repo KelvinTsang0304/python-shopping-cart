@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+<style type="text/css">
+    .important { color: #336699; }
+</style>
+{% endblock %}
+{% block content %}
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item slide-one active">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h3>Special discount</h3>
+                    <h1>Up to 10% off</h1>
+
+                    <p><a class="btn btn-giant btn-primary" href="charity-donation.html" role="button">Shop Now
+                        &rarr;</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item slide-two">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h2>Waves of Grace</h2>
+                    <p class="lead">Receive the unceasing wave after wave, after wave, after wave of Grace God has for
+                        you.</p>
+                    <p><a class="btn btn-lg btn-primary" href="ministry.html" role="button">Learn more &rarr;</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item slide-three">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h2>Grace and Truth</h2>
+                    <p class="lead">For God did not send his Son into the world to condemn the world, but to save the
+                        world through him. <em>John 3:17</em></p>
+                    <p><a class="btn btn-lg btn-primary" href="image-gallery.html" role="button">Browse gallery
+                        &rarr;</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span
+            class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#myCarousel"
+                                                                    role="button" data-slide="next"><span
+        class="glyphicon glyphicon-chevron-right"></span></a></div>
+<!-- // Banner Slider -->
+
+<!--UPCOMING EVENT-->
+
+<div class="highlight-bg">
+    <div class="container event-cta">
+        <div class="ec-txt"><span>Special  discount</span>
+            <p>Up to 10% off</p>
+        </div>
+        <a class="btn btn-lg btn-primary" href="event-single.html" role="button">Shop now →</a></div>
+</div>
+
+
+<!-- // UPCOMING EVENT -->
+
+<div class="highlight-bg has-margin-bottom">
+    <div class="container">
+        <div class="section-title">
+            <h4> Featured Products </h4>
+        </div>
+        <div class="row feature-block">
+            {% for data in itemData%}
+            {% for row in data %}
+            <div class="col-md-4 col-sm-6 has-margin-bottom">
+                <a href="/productDescription?productId={{row[0]}}"  style="text-align: center">
+                    <img class="img-responsive" style="width:50%  ;  margin: auto;" src={{ url_for('static', filename='uploads/' +
+                    row[4]) }} id="itemImage" />
+                </a>
+                <h5>{{row[1]}}</h5>
+
+                <p>HK${{row[2]}}</p>
+                <p>
+                <a class="btn btn-sm btn-primary" href="/productDescription?productId={{row[0]}}" role="button">
+                            Details &rarr;
+                        </a>
+                </p>
+
+            </div>
+            {% endfor %}
+            {% endfor %}
+            <!-- /.col-md-4 -->
+        </div>
+    </div>
+</div>
+
+<!--EVENT LISTS-->
+
+<div class="container event-list">
+    <div class="section-title">
+        <h4> CATEGORIES </h4>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="owl-carousel">
+                {% for row in categoryData %}
+                <div class="el-block item">
+                    <h4> {{row[1]}} </h4>
+                    <p class="el-head">{{row[2]}}</p>
+                    <p class="el-cta">
+                        <a class="btn btn-sm btn-primary" href="/displayCategory?categoryId={{row[0]}}" role="button">
+                            Details &rarr;
+                        </a>
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- // END EVENT LISTS -->
+{% endblock %}
